@@ -1,0 +1,24 @@
+def bubble_sort(arr):
+    """
+    Bubble Sort
+    Strategy : Repeatedly swap adjacent elements that are out of order.
+    Time     : O(n^2) worst/avg; O(n) best (sorted, early-exit on).
+    Space    : O(1) -- in-place.
+    """
+    a = arr[:]
+    n = len(a)
+    comparisons = 0
+    swaps = 0
+
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):   # last i elements already sorted
+            comparisons += 1
+            if a[j] > a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+                swaps += 1
+                swapped = True
+
+        if not swapped:   # early-exit: list already sorted
+            break
+    return a, comparisons, swaps

@@ -1,0 +1,34 @@
+import time
+def selection_sort(arr):
+    """
+    Selection Sort
+    Strategy : Find the minimum in the unsorted portion and swap it to the front.
+    Time     : O(n^2) -- exactly n*(n-1)/2 comparisons, always.
+    Space    : O(1) -- in-place; only index/temp variables used.
+    """
+    a = arr[:]           # work on a copy
+    n = len(a)
+    comparisons = 0
+    swaps = 0
+
+    for i in range(n):
+        min_idx = i      # assume current position is minimum
+        for j in range(i + 1, n):
+            comparisons += 1
+            if a[j] < a[min_idx]:
+                min_idx = j
+
+        if min_idx != i:     # only swap when necessary
+            a[i], a[min_idx] = a[min_idx], a[i]
+            swaps += 1
+
+    return a, comparisons, swaps
+
+# -- Timing harness (3 runs, take average) --
+def timed_run(fn, arr, runs=3):
+    times = []
+    for _ in range(runs):
+        t0 = time.perf_counter()
+        result, comps, swps = fn(arr)
+        times.append(time.perf_counter() - t0)
+    return sum(times)/runs, result, comps, swps

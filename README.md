@@ -60,17 +60,20 @@ Each test case was executed 3 times and the average execution time was recorded 
 ## Key Observations
 
 **Bubble Sort**
--Fastest for very small sorted arrays
+- Fastest for very small sorted arrays
 - Early-exit optimization improves best-case performance
 - Performs poorly on reverse-sorted large inputs
+  
 **Selection Sort**
 - Performance is mostly unaffected by input order
 - Makes fixed comparisons regardless of data arrangement
 - Uses very little memory
+  
 **Quick Sort**
 - Very efficient for large datasets
 - Median-of-three pivot reduces worst-case behavior
 - Requires recursive stack memory
+  
 **Merge Sort**
 - Stable and consistently fast
 - Guarantees O(n log n) performance
@@ -78,13 +81,13 @@ Each test case was executed 3 times and the average execution time was recorded 
 
 ## Results
 
-**Fastest for Small Data**
+**Fastest for Small Data:**
 Bubble Sort performed best for very small sorted arrays because of its early-exit optimization.
 
-**Fastest for Large Data**
+**Fastest for Large Data:**
 Quick Sort and Merge Sort performed significantly faster than O(n²) algorithms for larger inputs.
 
-**Memory Usage**
+**Memory Usage:**
 - Selection Sort and Bubble Sort used the least memory
 - Merge Sort required the highest auxiliary space
 - Quick Sort balanced performance and memory efficiency

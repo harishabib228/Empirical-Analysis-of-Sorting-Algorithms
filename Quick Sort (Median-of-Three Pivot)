@@ -1,0 +1,35 @@
+def quick_sort(arr):
+    """
+    Quick Sort  (median-of-three pivot)
+    Strategy : Partition around a pivot; recursively sort each side.
+    Pivot    : Median-of-three avoids O(n^2) on sorted/reversed input.
+    Time     : O(n log n) average; O(n^2) worst-case (rare with MoT).
+    Space    : O(log n) -- call stack depth.
+    """
+    comparisons = [0]
+    swaps = [0]
+
+    def partition(a, low, high):
+        mid = (low + high) // 2
+        if a[mid] < a[low]:  a[low], a[mid]  = a[mid], a[low];  swaps[0] += 1
+        if a[high] < a[low]: a[low], a[high] = a[high], a[low]; swaps[0] += 1
+        if a[mid] < a[high]: a[mid], a[high] = a[high], a[mid]; swaps[0] += 1
+        pivot = a[high]
+        i = low - 1
+        for j in range(low, high):
+            comparisons[0] += 1
+            if a[j] <= pivot:
+                i += 1
+                a[i], a[j] = a[j], a[i]; swaps[0] += 1
+        a[i+1], a[high] = a[high], a[i+1]; swaps[0] += 1
+        return i + 1
+
+    def _qs(a, low, high):
+        if low < high:
+            pi = partition(a, low, high)
+            _qs(a, low, pi - 1)
+            _qs(a, pi + 1, high)
+
+    a = arr[:]
+    _qs(a, 0, len(a) - 1)
+return a, comparisons[0], swaps[0]
